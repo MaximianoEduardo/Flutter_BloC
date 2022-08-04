@@ -102,14 +102,37 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // No Clique do botão estamos passando dados
-          // para o sink
-          counterBloc.eventSink.add(CounterAction.increment);
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              // No Clique do botão estamos passando dados
+              // para o sink
+              counterBloc.eventSink.add(CounterAction.increment);
+            },
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              // No Clique do botão estamos passando dados
+              // para o sink
+              counterBloc.eventSink.add(CounterAction.decrement);
+            },
+            tooltip: 'Decrement',
+            child: const Icon(Icons.remove),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              // No Clique do botão estamos passando dados
+              // para o sink
+              counterBloc.eventSink.add(CounterAction.reset);
+            },
+            tooltip: 'Reset',
+            child: const Icon(Icons.loop),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
