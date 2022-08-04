@@ -33,6 +33,8 @@ class CounterBloc {
       } else if (event == CounterAction.reset) {
         counter = 0;
       }
+
+      counterSink.add(counter);
     });
   }
 }
