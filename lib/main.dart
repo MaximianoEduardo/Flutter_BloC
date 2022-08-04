@@ -49,20 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   final counterBloc = CounterBloc();
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
             StreamBuilder(
               // Componente recebendo dados do sink
               stream: counterBloc.counterStream,
+              initialData: 0,
               builder: (context, snapshot) {
                 return Text(
-                  '$_counter',
+                  '${snapshot.data}',
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -118,8 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           // No Clique do botão estamos passando dados
           // para o sink
-          _counter++;
-          counterBloc.counterSink.add(_counter);
+          counterBloc.eventSink.add(CounterAction.increment);
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
